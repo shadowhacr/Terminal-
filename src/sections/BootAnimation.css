@@ -1,0 +1,248 @@
+.boot-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.matrix-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.boot-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px;
+  max-width: 900px;
+  width: 100%;
+}
+
+.boot-text {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: #00ff41;
+  text-shadow: 0 0 10px #00ff41;
+  min-height: 200px;
+  margin-bottom: 20px;
+}
+
+.boot-lines {
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.boot-cursor {
+  display: inline-block;
+  animation: blink 0.5s step-end infinite;
+  color: #00ff41;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.progress-bar-container {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 255, 65, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff41, #00cc33);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 20px #00ff41;
+}
+
+.progress-text {
+  color: #00ff41;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  margin-top: 8px;
+  text-shadow: 0 0 5px #00ff41;
+}
+
+/* Shadow Title Styles */
+.shadow-title-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  pointer-events: none;
+}
+
+.shadow-title-container.visible {
+  opacity: 1;
+}
+
+.shadow-title {
+  font-family: 'Courier New', monospace;
+  font-size: 80px;
+  font-weight: 900;
+  letter-spacing: 20px;
+  margin: 0;
+  position: relative;
+}
+
+.glitch {
+  position: relative;
+  color: #fff;
+  text-shadow: 
+    0 0 10px #00ff41,
+    0 0 20px #00ff41,
+    0 0 40px #00ff41,
+    0 0 80px #00ff41;
+  animation: glitch-skew 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #ff00c1;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #00fff9;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(12px, 9999px, 52px, 0); }
+  20% { clip: rect(65px, 9999px, 91px, 0); }
+  40% { clip: rect(26px, 9999px, 6px, 0); }
+  60% { clip: rect(82px, 9999px, 42px, 0); }
+  80% { clip: rect(19px, 9999px, 74px, 0); }
+  100% { clip: rect(56px, 9999px, 17px, 0); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(65px, 9999px, 99px, 0); }
+  20% { clip: rect(10px, 9999px, 32px, 0); }
+  40% { clip: rect(88px, 9999px, 12px, 0); }
+  60% { clip: rect(3px, 9999px, 77px, 0); }
+  80% { clip: rect(47px, 9999px, 55px, 0); }
+  100% { clip: rect(91px, 9999px, 3px, 0); }
+}
+
+@keyframes glitch-skew {
+  0% { transform: skew(0deg); }
+  10% { transform: skew(-2deg); }
+  20% { transform: skew(2deg); }
+  30% { transform: skew(0deg); }
+  40% { transform: skew(1deg); }
+  50% { transform: skew(-1deg); }
+  60% { transform: skew(0deg); }
+  70% { transform: skew(2deg); }
+  80% { transform: skew(-2deg); }
+  90% { transform: skew(0deg); }
+  100% { transform: skew(0deg); }
+}
+
+.shadow-subtitle {
+  font-family: 'Courier New', monospace;
+  font-size: 24px;
+  color: #00ff41;
+  letter-spacing: 15px;
+  margin-top: 10px;
+  text-shadow: 0 0 10px #00ff41;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.shadow-line {
+  width: 300px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ff41, transparent);
+  margin: 20px auto;
+  box-shadow: 0 0 10px #00ff41;
+}
+
+.shadow-tagline {
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  color: #888;
+  margin-top: 10px;
+}
+
+.typing-text {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid #00ff41;
+  white-space: nowrap;
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  max-width: 100%;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #00ff41; }
+}
+
+/* Scanline effect */
+.boot-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 65, 0.03) 2px,
+    rgba(0, 255, 65, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 3;
+}
